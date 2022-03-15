@@ -9,31 +9,40 @@ public class Polynom {
     }
     
     public static Polynom getInstance(double... a) {
-       //double[] pole = new double[a.length];
-       if (a == null) return null;
-       double[] p = new double[a.length];
-       for (int i = 0; i < a.length; i++) {
-           p[i] = a[i];
-       }
-       //a je pole double[]
-       //kontrola parametru a
-       //zjistit posledni nenulovy prvek
-       //vytvorit kopii pole a, respektive jeho casti
-       //Arrays.copy();
-       //System.arraycopy();
-       return new Polynom(p);
+        //double[] pole = new double[a.length];
+        if (a == null) return null;
+        double[] p = new double[a.length];
+        for (int i = a.length-1; i >= 0; i--) {
+            if (i != 0) {
+                for (int j = 0; j <= i; j++) {
+                    p[j] = a[j];
+                }
+                return new Polynom(p);
+            } else { ... }
+        } 
+       
+        //a je pole double[]
+        //kontrola parametru a
+        //zjistit posledni nenulovy prvek
+        //vytvorit kopii pole a, respektive jeho casti
+        //Arrays.copy();
+        //System.arraycopy();
     }
     
     public int getStupen() {
         return koef.length -1;
     }
     
-    public int getKoef(int index) {
-        
+    public double getKoef(int index) {
+        if (index < 0 || index >= koef.length) return 0.;
+        return koef[index];
     }
     
     public double getHodnota(double x) {
-        
+        double v = koef[koef.length - 1];
+        for (int i = koef.length-2; i>= 0; i--) {
+            v = v * x + koef[i];
+        }
     }
     
     public Polynom getDerivovany() {
